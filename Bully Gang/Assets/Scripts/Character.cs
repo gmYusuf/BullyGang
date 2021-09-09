@@ -22,9 +22,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-       // player = GetComponent<GameObject>();
-
+        anim = GetComponent<Animator>(); 
         localScale = transform.localScale;
         moveSpeed = 5f;
     }
