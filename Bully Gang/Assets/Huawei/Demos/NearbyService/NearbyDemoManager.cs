@@ -25,12 +25,12 @@ public class NearbyDemoManager : MonoBehaviour
 
     private void initilizeValues()
     {
-        nearbyManager.scanInfo = scanInfo;
+       /* nearbyManager.scanInfo = scanInfo;
         nearbyManager.remoteEndpointId = remoteEndpointId;
         nearbyManager.transmittingMessage = transmittingMessage;
         nearbyManager.myNameStr = myNameStr;
         nearbyManager.mEndpointName = mEndpointName;
-        nearbyManager.mFileServiceId = mFileServiceId;
+        nearbyManager.mFileServiceId = mFileServiceId;*/
     }
 
     public void SendFilesInner()

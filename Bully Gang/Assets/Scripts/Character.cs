@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Character : MonoBehaviour
 {
+    public GameObject player;
+
     private Rigidbody2D rb;
     private Animator anim;
     private float moveSpeed;
@@ -12,12 +15,16 @@ public class Character : MonoBehaviour
     private bool facingRight = true;
     private Vector3 localScale;
     private double nextUpdate = 2;
+    private string serverCharacterName = "Deer L";
+    private string clientCharacterName = "Deer R";
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+       // player = GetComponent<GameObject>();
+
         localScale = transform.localScale;
         moveSpeed = 5f;
     }
@@ -25,22 +32,64 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextUpdate)
+
+        // Call your fonction
+        if (!GameManager.Instance.PlayerSide)
         {
-            // Change the next update (current second+1)
-            nextUpdate = Mathf.FloorToInt(Time.time) + 2;
-            // Call your fonction
-            if (GameManager.Instance.PlayerSide)
+             //Debug.Log("[HMS] NearbyManager server");
+            if(String.Compare(player.name, serverCharacterName) == 0)
             {
-                Debug.Log("[HMS] NearbyManager server");
+                // all same
+                updateCharacter();
 
             }
-            else
+            else if (String.Compare(player.name, clientCharacterName) == 0)
             {
-                Debug.Log("[HMS] NearbyManager client");
+                string clientPosition = NearbyServer.Instance.ClientPosition;
+                // change client character
+                if (String.Compare(clientPosition, "no") == 0)
+                {
+                    
+                }else
+                {
+                    dirX = float.Parse(clientPosition) * moveSpeed;
+                }
+            }
+                 
+
+        }
+        else
+        { 
+
+            if (String.Compare(player.name, serverCharacterName) == 0)
+            {
+                string serverPosition = NearbyClient.Instance.ServerPosition;
+
+                // change server character
+                if (String.Compare(serverPosition, "no") == 0)
+                {
+
+                }
+                else
+                {
+                    dirX = float.Parse(serverPosition) * moveSpeed;
+                }
+            }
+            else if (String.Compare(player.name, clientCharacterName) == 0)
+            {
+                // all same
+                updateCharacter();
+
             }
         }
 
+
+
+
+    }
+
+    private void updateCharacter()
+    {
         dirX = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
 
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb.velocity.y == 0)
@@ -66,8 +115,6 @@ public class Character : MonoBehaviour
             anim.SetBool("isJumping", false);
             anim.SetBool("isFalling", true);
         }
-
-
     }
     private void FixedUpdate()
     {
@@ -81,7 +128,7 @@ public class Character : MonoBehaviour
             facingRight = false;
 
         if (((facingRight) && (localScale.x < 0)) || (!facingRight) && (localScale.x > 0))
-                localScale.x *= -1;
+            localScale.x *= -1;
 
         transform.localScale = localScale;
     }

@@ -557,8 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed07eb5eca6cc746a6e760bf4d01cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character1: {fileID: 1659427189}
-  character2: {fileID: 799800282}
 --- !u!4 &653824358
 Transform:
   m_ObjectHideFlags: 0
@@ -585,7 +583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25048d521fcdc4f41910840fd42d7d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1865504915}
+  playerLeft: {fileID: 1659427189}
+  playerRight: {fileID: 799800282}
+  PlayerSide: 0
 --- !u!1 &670511847
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1970fab9404ed304f8dbefb61d9692c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 799800282}
 --- !u!1 &1089971721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1262,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653824357}
+      - m_Target: {fileID: 653824359}
         m_MethodName: FightTrigger
         m_Mode: 1
         m_Arguments:
@@ -1580,6 +1581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1970fab9404ed304f8dbefb61d9692c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1659427189}
 --- !u!50 &1659427191
 Rigidbody2D:
   serializedVersion: 4
@@ -2020,6 +2022,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2122962098}
   - component: {fileID: 2122962097}
+  - component: {fileID: 2122962100}
+  - component: {fileID: 2122962099}
   m_Layer: 0
   m_Name: HMSNearbyServiceManager
   m_TagString: Untagged
@@ -2039,12 +2043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc7a14eb3ef3a640b4c771db5c897a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanInfo: 
-  remoteEndpointId: 
-  transmittingMessage: 
-  myNameStr: 
-  mEndpointName: 
-  mFileServiceId: 
 --- !u!4 &2122962098
 Transform:
   m_ObjectHideFlags: 0
@@ -2059,3 +2057,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122962099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122962096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc9f909bf9278f49943793c33adbf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1659427189}
+--- !u!114 &2122962100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122962096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c1cdee4252d3b4596c2e8b0eb62c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 799800282}

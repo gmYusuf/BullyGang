@@ -119,6 +119,8 @@
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\GameActions.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\NearbyClient.cs" />
+    <Compile Include="Assets\Scripts\NearbyServer.cs" />
     <None Include="Assets\_www.unityassetcollection.com.txt" />
     <None Include="Assets\ModularAnimalKnightsPBR\Shader\PBRMaskTint.shader" />
     <None Include="Assets\ModularAnimalKnightsPBR\ReadMe.txt" />
